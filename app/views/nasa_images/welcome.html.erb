@@ -1,4 +1,16 @@
-<h1>Here are some images!</h1>
+<h1>Here are some images from Mars!</h1>
 <% @images[0..10].each do |image| %>
   <%= image_tag image['img_src'], style: "max-height: 300px; max-width: 300px;" %>
 <% end %>
+
+<hr>
+<h1>Here is the weather on Earth!</h1>
+<h3><%= JSON.parse(@weather_result.body)['name'] %></h3>
+<ul>
+  <li>
+    <%= description = JSON.parse(@weather_result.body)['weather'].first['description'] %>
+    <%= '<i class="fas fa-solid fa-sun"></i>'.html_safe if description == 'clear sky' %>
+  </li>
+  <li><%= JSON.parse(@weather_result.body)['main']['temp'] %></li>
+</ul>
+
